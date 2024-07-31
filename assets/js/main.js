@@ -1,5 +1,11 @@
-const marcasAutos = ["Toyota", "Hyundai", "bmw"];
+const marcasAutos = ["Toyota", "Hyundai", "bmw", "Mercedes"];
 const marcasCamiones = ["Volvo", "Scania", "Mercedes", "Hyundai", "Toyota"];
+
+// encontrar un elemento y reemplazarlo
+const indexAEleminar = marcasAutos.indexOf("bmw"); // 2
+marcasAutos.splice(indexAEleminar, 1, "VolksWagen"); // ["Toyota", "Hyundai", "VolksWagen", "Mercedes"]
+
+console.log(marcasAutos);
 
 //contatenacion de arreglos
 
@@ -12,14 +18,14 @@ const marcasCamionesSinMarcasAutos = marcasCamiones.filter((marcaCamion) => {
 
   /* funcionamiento */
 
-  // MarcaCamion = Volvo => marcasAutos incluye la marca Volvo? includes devuelve false 
+  // MarcaCamion = Volvo => marcasAutos incluye la marca Volvo? includes devuelve false
   // el codigo queda así => return !false, esto está negado
   // entonces el valor retornado es true, por lo tanto,
   // filter va a agregar el elemento Volvo al nuevo arreglo
-  
-    // ----- DEMÁS ITERACIONES Scania, Mercedes
 
-  // MarcaCamion = Hyundai => marcasAutos incluye la marca Hyundai? includes devuelve true 
+  // ----- DEMÁS ITERACIONES Scania, Mercedes
+
+  // MarcaCamion = Hyundai => marcasAutos incluye la marca Hyundai? includes devuelve true
   // el codigo queda así => return !true, esto está negado
   // entonces el valor retornado es false, por lo tanto,
   // filter no agregará el elemento Hyundai al nuevo arreglo
@@ -27,9 +33,25 @@ const marcasCamionesSinMarcasAutos = marcasCamiones.filter((marcaCamion) => {
   // --- ITERACION TOYOTA
 });
 
-const union = marcasAutos.concat();
+const union = marcasAutos.concat(marcasCamionesSinMarcasAutos);
 
 console.log(union);
+
+// intersección
+const interseccion = marcasCamiones.filter((marcaCamion) => {
+  return marcasAutos.includes(marcaCamion);
+});
+
+console.log(interseccion);
+
+// diferencia
+// ["Volvo", "Scania", "Mercedes", "Hyundai", "Toyota", "Toyota", "Hyundai", "bmw", "Mercedes"];
+const diferencia = marcasCamiones.concat(marcasAutos).filter((marca) => {
+  return !marcasAutos.includes(marca) || !marcasCamiones.includes(marca);
+});
+// [Volvo, Scania, bmw]
+
+console.log(diferencia);
 
 // Arreglo de un auto
 const toyotaTercel = [
